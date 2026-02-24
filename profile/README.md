@@ -1,52 +1,102 @@
 <div align="center">
 
-# 🌌 AkashaCorporation
-**Deep System Architecture & Binary Intelligence**
+<br>
 
-[![Ecosystem](https://img.shields.io/badge/Ecosystem-HikariSystem-00e5ff?style=for-the-badge&logo=target&logoColor=white)](#)
-[![Field](https://img.shields.io/badge/Field-Reverse_Engineering-ff0055?style=for-the-badge&logo=hackthebox&logoColor=white)](#)
+# ⬡ AKASHA CORPORATION
 
-*Accessing the records of the machine. Deciphering the digital ether.*
+<br>
+
+**Deep System Architecture · Binary Intelligence · Reverse Engineering**
+
+<br>
+
+[![Ecosystem](https://img.shields.io/badge/Ecosystem-HikariSystem-00e5ff?style=flat-square&logo=target&logoColor=white)](#)
+[![Field](https://img.shields.io/badge/Field-Reverse_Engineering-ff0055?style=flat-square&logo=hackthebox&logoColor=white)](#)
+[![Architecture](https://img.shields.io/badge/Arch-x86_·_ARM_·_RISC--V-7c3aed?style=flat-square&logo=assemblyscript&logoColor=white)](#)
+[![License](https://img.shields.io/badge/License-Proprietary-orange?style=flat-square)](#)
+
+<br>
+
+> *"To master the machine, one must first read its records."*
+
+<br>
 
 </div>
 
 ---
 
-## 🛠️ The Core: HexCore IDE
-Nosso projeto principal é o **HexCore**, um ambiente de desenvolvimento integrado (IDE) especializado em análise de malware e engenharia reversa. Ele não é apenas um editor; é uma suíte completa que une análise estática e emulação de CPU em tempo real.
+## What We Build
 
-###  Native Engines (Powered by Akasha)
-Desenvolvemos bindings nativos de alta performance (N-API) para garantir que nossas ferramentas rodem com velocidade máxima e sem dependências externas pesadas:
+Akasha Corporation develops **low-level tooling for binary analysis, CPU emulation, and reverse engineering**. Our focus is precision: fast, dependency-light software that runs on anything — from modern workstations to legacy hardware.
 
-* ** hexcore-unicorn:** Emulação de CPU para PE (Windows) e ELF (Linux).
-* ** hexcore-capstone:** Desmontagem multi-arquitetura (x86, ARM, RISC-V).
-* ** hexcore-llvm-mc:** Assembler e patching de binários via LLVM 18.
-* ** hexcore-remill:** Levantamento de código de máquina para LLVM IR.
+All projects operate under the **HikariSystem** philosophy: lean, efficient, composable.
 
 ---
 
-## 🚀 Capabilities
+##  Flagship Project — HexCore IDE
 
-| Feature | Description |
+**HexCore** is our flagship integrated development environment purpose-built for malware analysis and reverse engineering. It is not merely an editor — it is a full analysis suite combining static inspection, entropy analysis, YARA scanning, and live CPU emulation in a single interface.
+
+Powering HexCore is a suite of **proprietary native engines** built as high-performance N-API bindings, eliminating heavy external dependencies while maximizing throughput.
+
+---
+
+##  Proprietary Engine Suite
+
+| Engine | Role | Targets |
+| :--- | :--- | :--- |
+| **hexcore-unicorn** | CPU emulation | PE (Windows), ELF (Linux) |
+| **hexcore-capstone** | Multi-architecture disassembly | x86, ARM, RISC-V |
+| **hexcore-llvm-mc** | Binary assembler & patching | Powered by LLVM 18 |
+| **hexcore-remill** | Machine code lifting | Machine Code → LLVM IR |
+
+All engines are developed and maintained in-house as part of the Akasha ecosystem. They are not wrappers — they are purpose-built bindings designed for HexCore's analysis pipeline.
+
+---
+
+##  HexCore Capabilities at a Glance
+
+| Capability | Description |
 | :--- | :--- |
-| **Binary Emulation** | Execução controlada de arquivos PE/ELF com mais de 70 API hooks. |
-| **Automation Pipeline** | Processamento em lote de binários via jobs JSON headless. |
-| **Static Analysis** | Extração de IOCs, análise de entropia e escaneamento YARA. |
-| **Decompilation** | Pipeline experimental de Machine Code → LLVM IR → pseudo-C. |
+| **Binary Emulation** | Controlled execution of PE/ELF files with 70+ API hooks |
+| **Automation Pipeline** | Headless batch processing of binaries via JSON job definitions |
+| **Static Analysis** | IOC extraction, entropy analysis, and YARA scanning |
+| **Decompilation** | Experimental pipeline: Machine Code → LLVM IR → pseudo-C |
 
 ---
 
-## 🌐 Connected Ecosystem
-Embora a Akasha foque no núcleo técnico, nossos sistemas operam sob a filosofia **HikariSystem**, garantindo que cada ferramenta seja leve, eficiente e capaz de rodar desde workstations modernas até hardwares legados.
+##  HikariSystem Philosophy
+
+Every tool we ship follows three principles:
+
+- **Lightweight** — no bloated runtimes or unnecessary dependencies
+- **Efficient** — native performance where it counts
+- **Universal** — capable of running on modern and legacy hardware alike
+
+HikariSystem is not a product — it is the standard by which every Akasha project is measured.
+
+---
+
+##  Repositories
+
+| Repository | Description |
+| :--- | :--- |
+| `hexcore` | The HexCore IDE — core application |
+| `hexcore-unicorn` | CPU emulation engine (N-API) |
+| `hexcore-capstone` | Disassembly engine (N-API) |
+| `hexcore-llvm-mc` | Assembler & binary patching engine (N-API) |
+| `hexcore-remill` | Code lifting engine (N-API) |
+
+**[→ Browse all repositories](https://github.com/AkashaCorporation?tab=repositories)**
+
+---
 
 <div align="center">
 
-**[Explore the Repositories](https://github.com/AkashaCorporation?tab=repositories)** • **[Documentation](docs/)**
-
 <br>
 
-`"To master the machine, one must first read its records."`
+Copyright © 2026 **AkashaCorporation**. All rights reserved. · Powered by **HikariSystem**
 
-Copyright © 2026 **AkashaCorporation**. All rights reserved.
+<br>
 
 </div>
