@@ -106,6 +106,6 @@ HikariSystem is an open community working across security research, reverse engi
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=footer"/>
 
-*HikariSystem — Security Tools for Professionals*
+*HikariSystem — Security Tools for Professionals | Copyright © 2026 **AkashaCorporation**. All rights reserved.*
 
 </div>
