@@ -119,6 +119,8 @@ v4.0.0 ██░░░░░░░░░░░░░░░░░░ Research —
 HikariSystem is an open community working across security research, reverse engineering, malware analysis, and offensive tooling. If you're building something serious — you belong here.
 
 **[Browse all repositories →](https://github.com/AkashaCorporation?tab=repositories)**
+<br>
+**[Join our Discord server →](https://discord.gg/uQFb4nUAcT)**
 
 ---
 
