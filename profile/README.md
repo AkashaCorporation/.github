@@ -111,6 +111,7 @@ v4.0.0 ██░░░░░░░░░░░░░░░░░░ Research —
 | 🐺 | **[MayaRomanova](https://github.com/ReiMayaRomanova)** | C++23 · MLIR · Helix Engine |
 | 🦂 | **[ThreatBiih](https://github.com/ThreatBiih)** | Threat Intel · Unicorn Engine · Frontend |
 | 🦆 | **[YasminePayload](https://github.com/YasminePayload)** | Pipeline · Automation · Features |
+| 🐼 | **[KrnL777](https://github.com/KrnL777)** |  Reverse Engineering · Exploit Dev |
 
 ---
 
