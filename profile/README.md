@@ -11,7 +11,7 @@
 [![Ecosystem](https://img.shields.io/badge/Ecosystem-HikariSystem-00e5ff?style=for-the-badge&logoColor=white)](#)
 [![Field](https://img.shields.io/badge/Field-Reverse_Engineering-ff0055?style=for-the-badge&logoColor=white)](#)
 [![Arch](https://img.shields.io/badge/Arch-x86_·_ARM_·_RISC--V-7c3aed?style=for-the-badge&logoColor=white)](#)
-[![License](https://img.shields.io/badge/License-MIT_·_Apache--2.0-50fa7b?style=for-the-badge&logoColor=white)](#)
+[![License](https://img.shields.io/badge/Open_Source-MIT_·_Apache--2.0_·_GPL--2.0-50fa7b?style=for-the-badge&logoColor=white)](#)
 
 <br>
 
@@ -33,14 +33,14 @@ We publish in the open. We document negative results. We credit our tools. We do
 
 ---
 
-## ✦ &nbsp; Flagship — HexCore IDE `v3.8.0`
+## ✦ &nbsp; Flagship — HexCore IDE `v3.8.2.2` stable · `v3.8.3` RC
 
-**[HikariSystem-HexCore](https://github.com/AkashaCorporation/HikariSystem-HexCore)** is a full reverse engineering IDE purpose-built for malware analysis and binary research. Not a plugin. Not a wrapper around another tool. A complete analysis environment built from scratch on Code-OSS.
+**[HikariSystem-HexCore](https://github.com/AkashaCorporation/HikariSystem-HexCore)** is a full reverse engineering IDE purpose-built for malware analysis and binary research. It is a complete, integrated analysis environment built on Code-OSS rather than a loose collection of editor plugins.
 
 <div align="center">
 
 ```
-Static Analysis → CPU Emulation → IR Lifting → Decompilation → Superoptimization → Dynamic Analysis → Automation
+Static Analysis → CPU Emulation → IR Lifting → Decompilation → Semantic Queries → Dynamic Analysis → Automation
 ```
 
 </div>
@@ -53,18 +53,24 @@ Static Analysis → CPU Emulation → IR Lifting → Decompilation → Superopti
 | **CPU Emulation** | Unicorn Engine 2.1.4 (N-API) — SharedArrayBuffer zero-copy hooks *(Project Perseus)* | Production |
 | **Assembly & Patching** | LLVM 18 MC (N-API) | Production |
 | **IR Lifting** | Remill → LLVM IR (N-API) — format-aware (PE64 / ELF / ET\_REL) | Production |
-| **Decompilation** | Helix MLIR — C++23 pipeline, C AST layer, SCC Tarjan, debug-info-guided types | `v0.9.0` |
+| **Native Decompilation** | Helix MLIR — C++23 pipeline, structured control flow, C AST, debug-info-guided types | `v0.9.3` |
+| **Managed Decompilation** | Revenant — portable ILSpy-based C# / IL recovery, including .NET single-file apphosts | `v0.4.0` |
 | **Superoptimization** | Souper — Z3 SMT + alive2 — first Windows N-API port | `v0.2.0` |
-| **Dynamic Analysis** | Elixir — Unicorn + Interceptor + Stalker *(Project Azoth, clean-room Qiling replacement)* | `v1.0.0` |
+| **Dynamic Analysis** | Elixir — Unicorn + Interceptor + Stalker *(Project Azoth, clean-room)* | `v1.0.3` |
+| **Semantic Queries** | HQL — behavioral signatures over normalized Helix C ASTs | `v0.1.2` |
 | **Type Recovery** | Pathfinder DWARF 5 + PDB + ET\_REL feeder — 3,864 sigs + 792 structs on `mali_kbase.ko` | Production |
 | **Session Persistence** | SQLite-backed `.hexcore_session.db` — renames, retypes, bookmarks, IOCs | Production |
-| **Automation Pipeline** | `.hexcore_job.json` — headless batch + Job Queue Manager with priority scheduling | Production |
+| **Automation Pipeline** | `.hexcore_job.json` — validated headless jobs, queueing, capability discovery, and evidence-gated outcomes | Production |
 
 <br>
 
-**Latest release —** `v3.8.0` *"Souper Era + Pathfinder + Project Azoth + DWARF Type Pipeline"*
+**Latest stable release —** `v3.8.2.2` · Elixir runtime packaging hotfix
 
-> Pathfinder DWARF/PDB/ET\_REL metadata feeder unlocks full debug content on kernel modules · Helix v0.9.0 with debug-info-guided type recovery (0% → 90%+ typed parameters on stripped `.ko`) · Project Azoth clean-room dynamic analysis engine (Rust + C++23, Apache-2.0) · Project Perseus zero-copy Unicorn hooks (1.34× throughput, eliminates 65% TSFN drop rate) · Souper LLVM IR superoptimizer with Z3 SMT solving · Refcount Scanner · Anti-Analysis Detection · API Hash Resolver · Job Queue Manager for concurrent agentic pipelines.
+`v3.8.2` added callfuscation analysis, control-flow deflattening, AArch64 lifting, and stronger discovery on obfuscated binaries. The `v3.8.2.1` and `v3.8.2.2` hotfixes hardened pipeline error reporting, file watching, and Elixir runtime packaging.
+
+**Current release candidate —** `v3.8.3` *"Honest Analysis at Scale"*
+
+> The RC focuses on correctness under automation: deterministic job isolation, semantic failure propagation, managed/native routing, HQL packaging, portable Revenant recovery, safer native lifecycles, Helix `v0.9.3`, and reproducible release-driven native prebuilds. It remains an RC until the packaged application completes the controlled acceptance corpus.
 
 ---
 
@@ -72,38 +78,43 @@ Static Analysis → CPU Emulation → IR Lifting → Decompilation → Superopti
 
 | Project | Description | Version |
 | :--- | :--- | :--- |
-| **[HexCore](https://github.com/AkashaCorporation/HikariSystem-HexCore)** | Full reverse engineering IDE — disassembly, emulation, decompilation, superoptimization | `v3.8.0` |
+| **[HexCore](https://github.com/AkashaCorporation/HikariSystem-HexCore)** | Full reverse engineering IDE — disassembly, emulation, decompilation, semantic analysis, automation | `v3.8.2.2` stable / `v3.8.3` RC |
 | **[Scylla Studio](https://github.com/AkashaCorporation/HikariSystem-Scylla)** | Pentesting IDE — recon, HTTP testing, headless automation, browser-driven vuln discovery | Active |
-| **[Tsurugi](https://github.com/ThreatBiih/HikariSystem-Tsurugi)** | Offensive security tooling | Active |
-| **[Ananke](https://github.com/ThreatBiih/HikariSystem-Ananke)** | Threat intelligence & automation | Active |
+| **[HikariLang](https://github.com/AkashaCorporation/HexCore-HikariLang)** | Language research for binary analysis and future HexCore integrations | Research |
+| **[HQL](https://github.com/AkashaCorporation/hexcore-hql)** | Semantic pattern matching over normalized decompiler C ASTs | Active |
+| **[Project Pythia](https://github.com/AkashaCorporation/Project-Pythia)** | Evidence-oriented assisted-analysis research for HexCore | Research |
 
 ---
 
-## ⚙ &nbsp; Native Engine Suite
+## ⚙ &nbsp; Engine Suite
 
-High-performance N-API bindings. No external installs. No wrappers. Built in-house. All engines published on npm.
+HexCore integrates native modules, compiler pipelines, and portable sidecar engines through versioned standalone repositories. GitHub Actions consumes dependency ZIPs from standalone releases, builds the canonical `.node` prebuilds, publishes them back to those releases, and assembles the IDE without requiring users to install native toolchains.
 
 | Engine | Role | Version |
 | :--- | :--- | :--- |
-| **[hexcore-capstone](https://www.npmjs.com/package/hexcore-capstone)** | Multi-arch disassembly (x86, ARM, RISC-V) | `1.3.4` |
-| **[hexcore-unicorn](https://www.npmjs.com/package/hexcore-unicorn)** | CPU emulation with SharedArrayBuffer zero-copy hooks (Unicorn 2.1.4) | `1.3.0` |
-| **[hexcore-llvm-mc](https://www.npmjs.com/package/hexcore-llvm-mc)** | Binary assembly & patching (LLVM 18) | `1.0.1` |
-| **[hexcore-remill](https://www.npmjs.com/package/hexcore-remill)** | Machine code → LLVM IR lifting — format-aware fork with CET / XED-ILD / CALL fall-through patches | `0.4.0` |
-| **hexcore-helix** | LLVM IR → C via C++23/MLIR — 24+ passes, three custom dialects, SSA splitting, type recovery | `0.9.0` |
-| **hexcore-elixir** | Dynamic analysis — Unicorn + Interceptor + Stalker (Project Azoth, Apache-2.0) | `1.0.0` |
-| **[hexcore-souper](https://www.npmjs.com/package/hexcore-souper)** | LLVM IR superoptimizer via Z3 SMT — **first Windows N-API port of Google Souper** | `0.2.0` |
-| **[hexcore-better-sqlite3](https://www.npmjs.com/package/hexcore-better-sqlite3)** | SQLite for session persistence & IOC storage | `2.0.1` |
+| **[hexcore-capstone](https://github.com/AkashaCorporation/hexcore-capstone)** | Multi-architecture disassembly binding | `1.3.5` |
+| **[hexcore-unicorn](https://github.com/AkashaCorporation/hexcore-unicorn)** | CPU emulation with SharedArrayBuffer zero-copy hooks | `1.3.1` |
+| **[hexcore-llvm-mc](https://github.com/AkashaCorporation/hexcore-llvm-mc)** | Binary assembly and patching with LLVM 18 MC | `1.0.2` |
+| **[hexcore-remill](https://github.com/AkashaCorporation/hexcore-remill)** | Machine code → LLVM IR lifting with format-aware recovery | `0.5.1` |
+| **[HexCore-Helix](https://github.com/AkashaCorporation/HexCore-Helix)** | LLVM IR → structured pseudo-C through C++23 and MLIR | `0.9.3` |
+| **[hexcore-elixir](https://github.com/AkashaCorporation/hexcore-elixir)** | Dynamic analysis with Unicorn, Interceptor, and Stalker | `1.0.3` |
+| **[hexcore-souper](https://github.com/AkashaCorporation/hexcore-souper)** | LLVM IR superoptimization through Z3 SMT | `0.2.0` |
+| **[hexcore-better-sqlite3](https://github.com/AkashaCorporation/hexcore-better-sqlite3)** | SQLite-backed session persistence and IOC storage | `2.0.3` |
+| **[hexcore-revenant](https://github.com/AkashaCorporation/hexcore-revenant)** | Self-contained managed .NET decompilation via ILSpy | `0.4.0` |
+
+Rellic remains disabled. Souper remains active and is evaluated with corpus evidence rather than assumed optimization wins.
 
 ---
 
 ## ✺ &nbsp; Roadmap
 
 ```
-v3.7.4   ████████████████████   Released   ·   Format-Aware Lifting + Helix C AST
-v3.8.0   ████████████████████   Released   ·   Souper + Pathfinder + Project Azoth + DWARF
-v3.8.1   ████░░░░░░░░░░░░░░░░   Planned    ·   Queue polish (position field + pool size)
-v3.9.0   ████░░░░░░░░░░░░░░░░   Planned    ·   BinDiff Integration + Sticky Session Routing
-v4.0.0   ██░░░░░░░░░░░░░░░░░░   Research   ·   Oracle Hook — Live AI Callbacks
+v3.8.0     ████████████████████   Released   ·   Souper + Pathfinder + Project Azoth + DWARF
+v3.8.1     ████████████████████   Released   ·   Stability + Helix 0.9.1 + Pythia
+v3.8.2.2   ████████████████████   Released   ·   Obfuscation analysis + runtime hotfixes
+v3.8.3     ████████████████░░░░   RC         ·   Honest automation + Helix 0.9.3 + Revenant + HQL
+v3.9.0     ████░░░░░░░░░░░░░░░░   Planned    ·   BinDiff integration + HikariLang
+v4.x       ██░░░░░░░░░░░░░░░░░░   Research   ·   Aletheia/Pythia evidence-gated assisted analysis
 ```
 
 ---
@@ -118,7 +129,7 @@ Akasha's research operates in three groups, each with distinct objectives and pr
 
 Decompilation pipeline architecture · binary lifting · CPU emulation · type recovery · debug-info-guided analysis · MLIR dialect design.
 
-**Active projects —** HexCore · Helix · Pathfinder · Souper · Project Azoth (Elixir)
+**Active projects —** HexCore · Helix · Pathfinder · Souper · Project Azoth (Elixir) · Revenant
 
 **Members —** LXrdKnowkill · MayaRomanova
 
@@ -138,7 +149,7 @@ Pentesting automation · vulnerability discovery · browser-driven exploitation 
 
 Domain-specific query languages over binary IR · semantic pattern matching · CAst optimizers and elimination passes · IR transformation infrastructure.
 
-**Active projects —** HQL *(HikariSystem Query Language — semantic pattern matching engine for HexCore over Helix decompiler output)* · CAst optimization passes
+**Active projects —** HQL *(HikariSystem Query Language — semantic pattern matching over Helix C AST output)* · HikariLang · C AST optimization passes
 
 **Members —** YasminePayload · MayaRomanova · LXrdKnowkill
 
@@ -160,9 +171,9 @@ Domain-specific query languages over binary IR · semantic pattern matching · C
 
 Akasha follows transparent research practice aligned with modern academic standards.
 
-**Open by default —** Our tools are released under MIT and Apache-2.0 licenses. We publish negative results: `hexcore-souper` is documented openly as having near-zero impact on production binaries, useful information for the community.
+**Open by default —** Our tools are released under MIT, Apache-2.0, or GPL-2.0 licenses as appropriate. We publish negative results: `hexcore-souper` is documented openly as having near-zero impact on production binaries, useful information for the community.
 
-**LLM-in-the-loop, disclosed —** We use AI assistants (Claude, Gemini) across literature review, design review, and implementation review. All publications credit AI assistance in acknowledgments, following the transparency model established by ReSym (CCS 2024, Distinguished Paper).
+**LLM-in-the-loop, disclosed —** We use AI assistants (including Codex, Claude, and Gemini) across literature review, design review, implementation, and adversarial validation. Publications disclose material AI assistance in their acknowledgments.
 
 **Clean-room when required —** Project Azoth (Elixir dynamic analysis) is developed under strict clean-room separation from upstream references, with `LICENSE_AUDIT` requirements on every contribution.
 
@@ -174,7 +185,7 @@ Akasha follows transparent research practice aligned with modern academic standa
 
 | Title | Authors | Venue / Status |
 | :--- | :--- | :--- |
-| Helix: Multi-Level IR Decompilation via MLIR Dialect Lowering with Debug-Info-Guided Type Recovery and Empirical Pipeline Loss Analysis | LXrdKnowkill (Lukas Machado) | Preprint · Akasha Corporation · 2026 |
+| Helix: Multi-Level IR Decompilation via MLIR Dialect Lowering with Debug-Info-Guided Type Recovery, Empirical Pipeline Loss Analysis, and Output Correctness Validation | LXrdKnowkill (Lukas Machado) | Preprint · Akasha Corporation · 2026 |
 
 ---
 
