@@ -1,223 +1,394 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=160&section=header&text=AKASHA%20CORPORATION&fontSize=44&fontColor=ffffff&animation=fadeIn&fontAlignY=42&desc=Security%20Tooling%20%C2%B7%20Reverse%20Engineering%20%C2%B7%20Binary%20Analysis&descAlignY=68&descSize=14"/>
+<img src="./Hydra%20Akasha.png" alt="Akasha Corporation" width="300"/>
+
+# AKASHA CORPORATION
+
+### Security research · Reverse engineering · Binary analysis · Offensive tooling
+
+**Evidence-first security tooling for humans and agents.**
 
 <br>
 
-<img src="./Hydra%20Akasha.png" alt="Akasha Corporation — Hydra" width="320"/>
+[![HexCore](https://img.shields.io/badge/HexCore-Reverse_Engineering-7c3aed?style=for-the-badge)](https://github.com/AkashaCorporation/HikariSystem-HexCore)
+[![Scylla](https://img.shields.io/badge/Scylla-Offensive_Security-dc2626?style=for-the-badge)](https://github.com/AkashaCorporation/HikariSystem-Scylla)
+[![Helix](https://img.shields.io/badge/Helix-MLIR_Decompiler-2563eb?style=for-the-badge)](https://github.com/AkashaCorporation/HexCore-Helix)
+
+<br>
+
+[Projects](#-projects) ·
+[Architecture](#-the-hikari-ecosystem) ·
+[Research](#-research-principles) ·
+[Team](#-team) ·
+[Community](#-community)
+
+</div>
+
+---
+
+## ◈ About Akasha
+
+**Akasha Corporation** builds open security tooling for reverse engineering, binary analysis, dynamic analysis, vulnerability research, and repeatable security experimentation.
+
+Our projects focus on the layers where high-level abstractions stop being enough:
+
+* native binaries and executable formats;
+* disassembly and control-flow recovery;
+* LLVM IR and MLIR;
+* decompilation and type recovery;
+* CPU and OS emulation;
+* semantic analysis;
+* reproducible automation;
+* evidence-driven security research.
+
+The ecosystem is designed for **human analysts and agentic workflows** alike.
+
+We prefer explicit uncertainty over fabricated certainty, reproducible evidence over screenshots, and composable infrastructure over opaque automation.
+
+---
+
+# ✦ Projects
+
+## HexCore
+
+### Reverse-engineering and binary-analysis workbench
+
+[**HikariSystem HexCore**](https://github.com/AkashaCorporation/HikariSystem-HexCore) is our flagship reverse-engineering environment, built on the VS Code workbench.
+
+It combines static analysis, native lifting, MLIR-based decompilation, semantic analysis, controlled emulation, session persistence, and reproducible automation inside one workspace.
+
+**Current stable release:** `v3.8.4`
+
+```text
+Binary
+  │
+  ├── Disassembly / CFG Recovery
+  │
+  ├── Remill → LLVM IR
+  │            │
+  │            └── Helix → MLIR → HAST → pseudo-C
+  │                              │
+  │                              └── HQL + HXDB
+  │
+  ├── Unicorn / Elixir Dynamic Analysis
+  │
+  └── Automation → Evidence → Reports
+```
+
+Some of the systems developed around HexCore include:
+
+`HXDB` · `HQL` · `Helix` · `Pathfinder` · `Function Atlas` · `Elixir / Azoth` · `Revenant` · `Souper`
+
+[**Explore HexCore →**](https://github.com/AkashaCorporation/HikariSystem-HexCore)
+
+---
+
+## Helix
+
+### MLIR-first native decompiler
+
+[**HexCore Helix**](https://github.com/AkashaCorporation/HexCore-Helix) transforms lifted LLVM IR into structured pseudo-C through a native C++23 / MLIR pipeline.
+
+```text
+LLVM IR
+   ↓
+HelixLow
+   ↓
+HelixMid
+   ↓
+HelixHigh
+   ↓
+C-AST / HAST
+   ↓
+pseudo-C
+```
+
+Helix works on control-flow structuring, calling-convention recovery, stack reconstruction, SSA recovery, type propagation, debug-information integration, and output-confidence tracking.
+
+Its design principle is simple:
+
+> **Fidelity over polish.**
+
+When information cannot be reliably recovered, the pipeline should preserve that uncertainty instead of inventing a clean-looking answer.
+
+[**Explore Helix →**](https://github.com/AkashaCorporation/HexCore-Helix)
+
+---
+
+## Scylla Studio
+
+### Evidence-oriented offensive security workbench
+
+[**HikariSystem Scylla**](https://github.com/AkashaCorporation/HikariSystem-Scylla) is a headless-first environment for web and API security experimentation.
+
+Scylla models more than individual HTTP requests. Its engagement model connects:
+
+```text
+Identity
+   +
+Resource
+   +
+Expected Policy
+   ↓
+Governed Experiment
+   ↓
+HTTP / Scanner Evidence
+   ↓
+Observation
+   ↓
+Candidate
+   ↓
+Validated Finding
+```
+
+The goal is repeatable authorization and business-logic research where provenance and evidence remain attached to the result.
+
+**Current development target:** `Scylla 3.0`
+
+[**Explore Scylla →**](https://github.com/AkashaCorporation/HikariSystem-Scylla)
+
+---
+
+# ⌬ The Hikari Ecosystem
+
+Akasha projects are designed as components rather than isolated experiments.
+
+| Project                                                                           | Role                                              |
+| --------------------------------------------------------------------------------- | ------------------------------------------------- |
+| **[HexCore](https://github.com/AkashaCorporation/HikariSystem-HexCore)**          | Reverse-engineering and binary-analysis workbench |
+| **[Helix](https://github.com/AkashaCorporation/HexCore-Helix)**                   | MLIR-first native decompiler                      |
+| **[Scylla Studio](https://github.com/AkashaCorporation/HikariSystem-Scylla)**     | Offensive-security experimentation environment    |
+| **[HQL](https://github.com/AkashaCorporation/hexcore-hql)**                       | Semantic query and behavioral analysis layer      |
+| **[HikariLang](https://github.com/AkashaCorporation/HexCore-HikariLang)**         | Declarative binary-analysis workflow language     |
+| **[Elixir / Project Azoth](https://github.com/AkashaCorporation/hexcore-elixir)** | Controlled dynamic analysis and instrumentation   |
+| **[Project Pythia](https://github.com/AkashaCorporation/Project-Pythia)**         | Oracle-agent research for live analysis decisions |
+
+### Native infrastructure
+
+The ecosystem also maintains standalone native components used by HexCore:
+
+[Capstone](https://github.com/AkashaCorporation/hexcore-capstone) ·
+[Unicorn](https://github.com/AkashaCorporation/hexcore-unicorn) ·
+[Remill](https://github.com/AkashaCorporation/hexcore-remill) ·
+[Souper](https://github.com/AkashaCorporation/hexcore-souper) ·
+[SQLite](https://github.com/AkashaCorporation/hexcore-better-sqlite3) ·
+[Revenant](https://github.com/AkashaCorporation/hexcore-revenant)
+
+These repositories keep native engines independently buildable and versionable while HexCore consumes validated prebuilt artifacts.
+
+---
+
+# ⚙ The Hikari Philosophy
+
+### Evidence before conclusions
+
+A successful scanner, decompiler pass, query, or emulation step does not automatically prove a security conclusion.
+
+We deliberately distinguish:
+
+```text
+signal → candidate → evidence → validated conclusion
+```
+
+### Honest failure
+
+Incomplete analysis should remain visibly incomplete.
+
+Unknown types, unresolved control flow, partial decoding, missing evidence, timeouts, and unsupported semantics are analysis states — not opportunities to fabricate plausible output.
+
+### Reproducibility
+
+Research pipelines should be capable of describing:
+
+* the exact binary being analyzed;
+* the engine versions involved;
+* the inputs and configuration;
+* the evidence used;
+* the analysis generation;
+* the barriers encountered;
+* and the resulting artifacts.
+
+### Human + agent workflows
+
+Akasha tooling is designed so the same underlying analysis infrastructure can be consumed through:
+
+* interactive IDE workflows;
+* headless jobs;
+* structured query languages;
+* command-line tools;
+* and agentic analysis systems.
+
+Agents should consume structured evidence rather than scrape a UI and guess what happened.
+
+---
+
+# ◇ Research Groups
+
+Akasha is organized into focused engineering and research groups.
+Each group has a technical lead responsible for its direction, while contributors may work across multiple groups when projects overlap.
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+### ◉ Binary Analysis Group
+
+**Lead — [LXrdKnowkill](https://github.com/LXrdKnowkill)**
+
+Decompiler architecture · binary lifting · control-flow recovery · type recovery · debug information · compiler infrastructure.
+
+**Core projects**
+
+HexCore · Helix · Pathfinder · Revenant · Souper
+
+**Contributors**
+
+MayaRomanova · ThreatBiih · YasminePayload
+
+</td>
+
+<td width="50%" valign="top">
+
+### ◉ Emulation & Dynamic Analysis Group
+
+**Lead — [ThreatBiih](https://github.com/ThreatBiih)**
+
+CPU emulation · dynamic analysis · instrumentation · execution modeling · runtime evidence · emulation-assisted vulnerability research.
+
+**Core projects**
+
+HexCore Unicorn · Elixir / Project Azoth · Perseus · dynamic-analysis infrastructure
+
+**Contributors**
+
+LXrdKnowkill
+
+</td>
+</tr>
+
+<tr>
+<td width="50%" valign="top">
+
+### ◉ Offensive Security Group
+
+**Lead — [KrnL777](https://github.com/KrnL777)**
+
+Vulnerability research · exploit development · web/API security · authorization testing · offensive automation.
+
+**Core projects**
+
+Scylla Studio · security research tooling · vulnerability research infrastructure
+
+**Contributors**
+
+ThreatBiih · LXrdKnowkill
+
+</td>
+
+<td width="50%" valign="top">
+
+### ◉ Language Engineering Group
+
+**Lead — [YasminePayload](https://github.com/YasminePayload)**
+
+Semantic query languages · analysis DSLs · AST/HAST transformations · automation languages · structured interfaces for agents.
+
+**Core projects**
+
+HQL · HikariLang · C-AST/HAST analysis infrastructure · Bari Harness
+
+**Contributors**
+
+LXrdKnowkill · MayaRomanova
+
+</td>
+</tr>
+</table>
+
+> Group membership reflects primary technical responsibility rather than strict project boundaries. Akasha projects intentionally cross group boundaries.
+
+
+# ⟐ Research Principles
+
+## Open development
+
+A significant portion of the Hikari ecosystem is developed publicly under permissive or open-source licenses appropriate to each component.
+
+We publish implementation details, limitations, failed experiments, benchmarks, and negative results when they provide useful engineering evidence.
+
+## Clean-room engineering where required
+
+Components that replace or interoperate with restrictive ecosystems are developed with explicit license boundaries and documented provenance.
+
+Project Azoth / Elixir, for example, maintains a clean-room development model around its dynamic-analysis infrastructure.
+
+## AI-assisted engineering, disclosed
+
+Modern AI systems are used throughout parts of our development and research process for tasks such as:
+
+* implementation assistance;
+* code review;
+* test generation;
+* architecture review;
+* documentation;
+* adversarial validation;
+* and research exploration.
+
+Material assistance is disclosed where appropriate.
+
+AI output is treated as an input to engineering review — not as evidence by itself.
+
+## Measure instead of assume
+
+New analysis techniques are evaluated against controlled corpora and regression gates.
+
+If an optimization, heuristic, or architecture does not produce measurable value, we prefer documenting that result over pretending otherwise.
+
+---
+
+# ◉ Team
+
+Akasha is built by researchers and engineers working across multiple areas of the security stack.
+
+| Member                                                  | Focus                                                       |
+| ------------------------------------------------------- | ----------------------------------------------------------- |
+| **[LXrdKnowkill](https://github.com/LXrdKnowkill)**     | Architecture · Binary Analysis · Compiler Infrastructure    |
+| **[MayaRomanova](https://github.com/ReiMayaRomanova)**  | C++ · MLIR · Decompilation · AST Optimization               |
+| **[ThreatBiih](https://github.com/ThreatBiih)**         | Security Research · Threat Intelligence · Frontend          |
+| **[YasminePayload](https://github.com/YasminePayload)** | Automation · Language Engineering · HQL                     |
+| **[KrnL777](https://github.com/KrnL777)**               | Reverse Engineering · Offensive Security · Exploit Research |
+
+---
+
+# ✦ Research & Publications
+
+### Helix: Multi-Level IR Decompilation
+
+**Multi-Level IR Decompilation via MLIR Dialect Lowering with Debug-Info-Guided Type Recovery, Empirical Pipeline Loss Analysis, and Output Correctness Validation**
+
+Lukas Machado · Akasha Corporation · 2026
+
+Research around Helix investigates multi-level intermediate representations, semantic-loss localization, type recovery, control-flow reconstruction, and evidence-aware decompiler validation.
+
+---
+
+# ♢ Community
+
+Security tooling gets better when its assumptions are challenged.
+
+Bug reports, reproducible test cases, architectural discussions, benchmarks, research comparisons, and contributions are welcome across the public Akasha repositories.
+
+<div align="center">
+
+[![Repositories](https://img.shields.io/badge/Browse_Repositories-181717?style=for-the-badge\&logo=github\&logoColor=white)](https://github.com/AkashaCorporation?tab=repositories)
+[![Discord](https://img.shields.io/badge/Community_Discord-5865F2?style=for-the-badge\&logo=discord\&logoColor=white)](https://discord.gg/uQFb4nUAcT)
 
 <br><br>
 
-[![Ecosystem](https://img.shields.io/badge/Ecosystem-HikariSystem-00e5ff?style=for-the-badge&logoColor=white)](#)
-[![Field](https://img.shields.io/badge/Field-Reverse_Engineering-ff0055?style=for-the-badge&logoColor=white)](#)
-[![Arch](https://img.shields.io/badge/Arch-x86_·_ARM_·_RISC--V-7c3aed?style=for-the-badge&logoColor=white)](#)
-[![License](https://img.shields.io/badge/Open_Source-MIT_·_Apache--2.0_·_GPL--2.0-50fa7b?style=for-the-badge&logoColor=white)](#)
+**AKASHA CORPORATION**
 
-<br>
+*Research the machine. Preserve the evidence.*
 
-> ### *"To master the machine, one must first read its records."*
-
-<br>
-
-</div>
-
----
-
-## ⟁ &nbsp; What We Build
-
-Akasha Corporation develops **low-level security tooling for binary analysis, CPU emulation, reverse engineering, and offensive security**. Our work lives at the boundary between software and hardware — where most tools stop, ours begins.
-
-All projects operate under the **HikariSystem** philosophy: lean, composable, built for professionals.
-
-We publish in the open. We document negative results. We credit our tools. We do not ship vaporware.
-
----
-
-## ✦ &nbsp; Flagship — HexCore IDE `v3.8.2.2` stable · `v3.8.3` RC
-
-**[HikariSystem-HexCore](https://github.com/AkashaCorporation/HikariSystem-HexCore)** is a full reverse engineering IDE purpose-built for malware analysis and binary research. It is a complete, integrated analysis environment built on Code-OSS rather than a loose collection of editor plugins.
-
-<div align="center">
-
-```
-Static Analysis → CPU Emulation → IR Lifting → Decompilation → Semantic Queries → Dynamic Analysis → Automation
-```
-
-</div>
-
-<br>
-
-| Layer | Technology | Status |
-| :--- | :--- | :--- |
-| **Disassembly** | Capstone v5 (N-API) | Production |
-| **CPU Emulation** | Unicorn Engine 2.1.4 (N-API) — SharedArrayBuffer zero-copy hooks *(Project Perseus)* | Production |
-| **Assembly & Patching** | LLVM 18 MC (N-API) | Production |
-| **IR Lifting** | Remill → LLVM IR (N-API) — format-aware (PE64 / ELF / ET\_REL) | Production |
-| **Native Decompilation** | Helix MLIR — C++23 pipeline, structured control flow, C AST, debug-info-guided types | `v0.9.3` |
-| **Managed Decompilation** | Revenant — portable ILSpy-based C# / IL recovery, including .NET single-file apphosts | `v0.4.0` |
-| **Superoptimization** | Souper — Z3 SMT + alive2 — first Windows N-API port | `v0.2.0` |
-| **Dynamic Analysis** | Elixir — Unicorn + Interceptor + Stalker *(Project Azoth, clean-room)* | `v1.0.3` |
-| **Semantic Queries** | HQL — behavioral signatures over normalized Helix C ASTs | `v0.1.2` |
-| **Type Recovery** | Pathfinder DWARF 5 + PDB + ET\_REL feeder — 3,864 sigs + 792 structs on `mali_kbase.ko` | Production |
-| **Session Persistence** | SQLite-backed `.hexcore_session.db` — renames, retypes, bookmarks, IOCs | Production |
-| **Automation Pipeline** | `.hexcore_job.json` — validated headless jobs, queueing, capability discovery, and evidence-gated outcomes | Production |
-
-<br>
-
-**Latest stable release —** `v3.8.2.2` · Elixir runtime packaging hotfix
-
-`v3.8.2` added callfuscation analysis, control-flow deflattening, AArch64 lifting, and stronger discovery on obfuscated binaries. The `v3.8.2.1` and `v3.8.2.2` hotfixes hardened pipeline error reporting, file watching, and Elixir runtime packaging.
-
-**Current release candidate —** `v3.8.3` *"Honest Analysis at Scale"*
-
-> The RC focuses on correctness under automation: deterministic job isolation, semantic failure propagation, managed/native routing, HQL packaging, portable Revenant recovery, safer native lifecycles, Helix `v0.9.3`, and reproducible release-driven native prebuilds. It remains an RC until the packaged application completes the controlled acceptance corpus.
-
----
-
-## ⌬ &nbsp; HikariSystem Arsenal
-
-| Project | Description | Version |
-| :--- | :--- | :--- |
-| **[HexCore](https://github.com/AkashaCorporation/HikariSystem-HexCore)** | Full reverse engineering IDE — disassembly, emulation, decompilation, semantic analysis, automation | `v3.8.2.2` stable / `v3.8.3` RC |
-| **[Scylla Studio](https://github.com/AkashaCorporation/HikariSystem-Scylla)** | Pentesting IDE — recon, HTTP testing, headless automation, browser-driven vuln discovery | Active |
-| **[HikariLang](https://github.com/AkashaCorporation/HexCore-HikariLang)** | Language research for binary analysis and future HexCore integrations | Research |
-| **[HQL](https://github.com/AkashaCorporation/hexcore-hql)** | Semantic pattern matching over normalized decompiler C ASTs | Active |
-| **[Project Pythia](https://github.com/AkashaCorporation/Project-Pythia)** | Evidence-oriented assisted-analysis research for HexCore | Research |
-
----
-
-## ⚙ &nbsp; Engine Suite
-
-HexCore integrates native modules, compiler pipelines, and portable sidecar engines through versioned standalone repositories. GitHub Actions consumes dependency ZIPs from standalone releases, builds the canonical `.node` prebuilds, publishes them back to those releases, and assembles the IDE without requiring users to install native toolchains.
-
-| Engine | Role | Version |
-| :--- | :--- | :--- |
-| **[hexcore-capstone](https://github.com/AkashaCorporation/hexcore-capstone)** | Multi-architecture disassembly binding | `1.3.5` |
-| **[hexcore-unicorn](https://github.com/AkashaCorporation/hexcore-unicorn)** | CPU emulation with SharedArrayBuffer zero-copy hooks | `1.3.1` |
-| **[hexcore-llvm-mc](https://github.com/AkashaCorporation/hexcore-llvm-mc)** | Binary assembly and patching with LLVM 18 MC | `1.0.2` |
-| **[hexcore-remill](https://github.com/AkashaCorporation/hexcore-remill)** | Machine code → LLVM IR lifting with format-aware recovery | `0.5.1` |
-| **[HexCore-Helix](https://github.com/AkashaCorporation/HexCore-Helix)** | LLVM IR → structured pseudo-C through C++23 and MLIR | `0.9.3` |
-| **[hexcore-elixir](https://github.com/AkashaCorporation/hexcore-elixir)** | Dynamic analysis with Unicorn, Interceptor, and Stalker | `1.0.3` |
-| **[hexcore-souper](https://github.com/AkashaCorporation/hexcore-souper)** | LLVM IR superoptimization through Z3 SMT | `0.2.0` |
-| **[hexcore-better-sqlite3](https://github.com/AkashaCorporation/hexcore-better-sqlite3)** | SQLite-backed session persistence and IOC storage | `2.0.3` |
-| **[hexcore-revenant](https://github.com/AkashaCorporation/hexcore-revenant)** | Self-contained managed .NET decompilation via ILSpy | `0.4.0` |
-
-Rellic remains disabled. Souper remains active and is evaluated with corpus evidence rather than assumed optimization wins.
-
----
-
-## ✺ &nbsp; Roadmap
-
-```
-v3.8.0     ████████████████████   Released   ·   Souper + Pathfinder + Project Azoth + DWARF
-v3.8.1     ████████████████████   Released   ·   Stability + Helix 0.9.1 + Pythia
-v3.8.2.2   ████████████████████   Released   ·   Obfuscation analysis + runtime hotfixes
-v3.8.3     ████████████████░░░░   RC         ·   Honest automation + Helix 0.9.3 + Revenant + HQL
-v3.9.0     ████░░░░░░░░░░░░░░░░   Planned    ·   BinDiff integration + HikariLang
-v4.x       ██░░░░░░░░░░░░░░░░░░   Research   ·   Aletheia/Pythia evidence-gated assisted analysis
-```
-
----
-
-## ⟐ &nbsp; Research Groups
-
-Akasha's research operates in three groups, each with distinct objectives and project portfolios. Members may participate across groups when their work crosses domain boundaries.
-
-<br>
-
-### ◉ &nbsp; Binary Analysis Group · *Akasha Corporation*
-
-Decompilation pipeline architecture · binary lifting · CPU emulation · type recovery · debug-info-guided analysis · MLIR dialect design.
-
-**Active projects —** HexCore · Helix · Pathfinder · Souper · Project Azoth (Elixir) · Revenant
-
-**Members —** LXrdKnowkill · MayaRomanova
-
-<br>
-
-### ◉ &nbsp; Offensive Security Group · *Akasha Corporation*
-
-Pentesting automation · vulnerability discovery · browser-driven exploitation · headless reconnaissance · threat intelligence.
-
-**Active projects —** Scylla Studio · Tsurugi · Ananke
-
-**Members —** ThreatBiih · KrnL777 · LXrdKnowkill
-
-<br>
-
-### ◉ &nbsp; Language Engineering Group · *Akasha Corporation*
-
-Domain-specific query languages over binary IR · semantic pattern matching · CAst optimizers and elimination passes · IR transformation infrastructure.
-
-**Active projects —** HQL *(HikariSystem Query Language — semantic pattern matching over Helix C AST output)* · HikariLang · C AST optimization passes
-
-**Members —** YasminePayload · MayaRomanova · LXrdKnowkill
-
----
-
-## ⚭ &nbsp; Core Team
-
-|  | Handle | Domain |
-| :---: | :--- | :--- |
-| 🐻 | **[LXrdKnowkill](https://github.com/LXrdKnowkill)** | Founder · Architecture · Compiler Infrastructure |
-| 🐺 | **[MayaRomanova](https://github.com/ReiMayaRomanova)** | C++23 · MLIR · Helix Engine · CAst Optimizers |
-| 🦂 | **[ThreatBiih](https://github.com/ThreatBiih)** | Threat Intelligence · Unicorn Engine · Frontend |
-| 🦆 | **[YasminePayload](https://github.com/YasminePayload)** | Pipeline · Automation · HQL Language Design |
-| 🐼 | **[KrnL777](https://github.com/KrnL777)** | Reverse Engineering · Exploit Development |
-
----
-
-## ⟡ &nbsp; Research Practice
-
-Akasha follows transparent research practice aligned with modern academic standards.
-
-**Open by default —** Our tools are released under MIT, Apache-2.0, or GPL-2.0 licenses as appropriate. We publish negative results: `hexcore-souper` is documented openly as having near-zero impact on production binaries, useful information for the community.
-
-**LLM-in-the-loop, disclosed —** We use AI assistants (including Codex, Claude, and Gemini) across literature review, design review, implementation, and adversarial validation. Publications disclose material AI assistance in their acknowledgments.
-
-**Clean-room when required —** Project Azoth (Elixir dynamic analysis) is developed under strict clean-room separation from upstream references, with `LICENSE_AUDIT` requirements on every contribution.
-
-**Reproducibility —** Pipeline loss analysis methodology, used in our Helix research, produces structured `[P0-TRACE]` logs at every pass boundary. The same methodology that backs our research backs our debugging.
-
----
-
-## ✦ &nbsp; Publications
-
-| Title | Authors | Venue / Status |
-| :--- | :--- | :--- |
-| Helix: Multi-Level IR Decompilation via MLIR Dialect Lowering with Debug-Info-Guided Type Recovery, Empirical Pipeline Loss Analysis, and Output Correctness Validation | LXrdKnowkill (Lukas Machado) | Preprint · Akasha Corporation · 2026 |
-
----
-
-## ⟁ &nbsp; Community
-
-HikariSystem is an open community working across security research, reverse engineering, malware analysis, and offensive tooling. If you're building something serious — you belong here.
-
-<br>
-
-<div align="center">
-
-[![Repositories](https://img.shields.io/badge/Browse_All_Repositories-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/AkashaCorporation?tab=repositories)
-[![Discord](https://img.shields.io/badge/Join_Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/uQFb4nUAcT)
-
-</div>
-
-<br>
-
----
-
-<div align="center">
-
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=footer"/>
-
-<br>
-
-**HikariSystem** &nbsp; · &nbsp; *Security Tools for Professionals*
-
-<sub>Copyright © 2026 Akasha Corporation. All rights reserved.</sub>
-
-<br>
-
-<img src="https://komarev.com/ghpvc/?username=AkashaCorporation&color=ff0055&style=for-the-badge&label=ORGANIZATION+VIEWS"/>
+<sub>HikariSystem · Security tooling for reverse engineering and security research</sub>
 
 </div>
